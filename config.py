@@ -1,4 +1,6 @@
+
 import os
+from typing import ClassVar
 
 from dotenv import load_dotenv
 
@@ -12,7 +14,7 @@ class BaseConfig:
         "DATABASE_URL", "sqlite:///local.db"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ENGINE_OPTIONS = {
+    SQLALCHEMY_ENGINE_OPTIONS: ClassVar[dict] = {
         "pool_pre_ping": True,
         "pool_recycle": 1800,
     }
@@ -47,7 +49,7 @@ class TestingConfig(BaseConfig):
     TESTING = True
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = "sqlite://"
-    SQLALCHEMY_ENGINE_OPTIONS = {}
+    SQLALCHEMY_ENGINE_OPTIONS: ClassVar[dict] = {}
     AUTO_CREATE_TABLES = True
 
 

@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 
 from extensions import db
 
@@ -17,7 +18,7 @@ def readiness():
     try:
         db.session.execute(text("SELECT 1"))
         return jsonify({"status": "ready", "database": "connected"}), 200
-    except Exception:
+    except SQLAlchemyError:
         db.session.rollback()
         return jsonify({"status": "not_ready"}), 503
     finally:
