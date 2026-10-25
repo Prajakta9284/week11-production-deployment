@@ -1,0 +1,11 @@
+services:
+  web:
+    environment:
+      APP_ENV: production
+      LOG_FORMAT: json
+      AUTO_CREATE_TABLES: "false"
+    ports: !reset []
+    restart: always
+
+  db:
+    restart: always
