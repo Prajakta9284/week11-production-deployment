@@ -1,7 +1,9 @@
 import csv
 import io
-from flask import Blueprint, current_app, jsonify, request, Response
+
+from flask import Blueprint, Response, current_app, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
+
 from extensions import db
 from models import Post
 

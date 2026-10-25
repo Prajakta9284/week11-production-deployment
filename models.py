@@ -1,10 +1,12 @@
-from datetime import datetime, timezone
-from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import UTC, datetime, timezone
+
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from extensions import db
 
 
 def utcnow():
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class User(db.Model):

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token
 from sqlalchemy import or_
+
 from extensions import db
 from models import User
 

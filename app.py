@@ -1,12 +1,14 @@
 import os
+
 from flask import Flask, jsonify
+
 from config import CONFIGS
 from extensions import db, jwt, migrate
 from logging_config import configure_logging
 from routes.auth import auth_bp
-from routes.posts import posts_bp
 from routes.comments import comments_bp
 from routes.health import health_bp
+from routes.posts import posts_bp
 
 
 def create_app(test_config=None):
@@ -32,7 +34,7 @@ def create_app(test_config=None):
     migrate.init_app(app, db)
 
     # Import models so Flask-Migrate can discover them.
-    from models import User, Post, Comment  # noqa: F401
+    from models import Comment, Post, User
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(posts_bp, url_prefix="/api/posts")
